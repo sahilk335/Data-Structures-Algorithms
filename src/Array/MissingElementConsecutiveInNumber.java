@@ -36,8 +36,8 @@ public class MissingElementConsecutiveInNumber {
 	}
 
 	public static void main(String args[]) {
-		int missingArray[] = { 1, 2, 4, 5, 6, 7, 8, 0 };
-		// Missing number is 4
+		int missingArray[] = { 5, 2, 4, 1, 6, 7, 8, 0 };
+		// Missing number is 3
 		System.out.print("Missing number in array : "
 				+ missingNumber(missingArray));
 	}
