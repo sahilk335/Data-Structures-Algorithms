@@ -35,7 +35,7 @@ public class FindElementPath {
 
 		BinaryTree tree = new BinaryTree();
 		tree.makeTree();
-		fp.searchNode(tree.root, 10);
+		fp.searchNode(tree.root, 9);
 		System.out.println(st);
 
 	}
