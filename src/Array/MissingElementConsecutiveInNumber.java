@@ -4,6 +4,7 @@ package Array;
  * 
  * @author Sahil
  * 
+ *         Find Missing Element in unsorted Consecutive Array in O(N)
  * 
  *         It is based on following property of XOR operation: 1) If you XOR any
  *         number with itself, you will get ZERO. i.e.. A ^ A = 0 2) If you XOR
