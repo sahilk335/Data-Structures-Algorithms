@@ -8,14 +8,13 @@ public class FindElementPath {
 	static boolean b;
 
 	public void searchNode(Node node, int key) {
-		if (node == null) {
+		if (node == null || b == true) {
 			return;
 		}
 
 		st.push(node.data);
 
 		if (node.data == key) {
-
 			b = true;
 			return;
 		}
@@ -36,7 +35,7 @@ public class FindElementPath {
 
 		BinaryTree tree = new BinaryTree();
 		tree.makeTree();
-		fp.searchNode(tree.root, 6);
+		fp.searchNode(tree.root, 10);
 		System.out.println(st);
 
 	}
