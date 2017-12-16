@@ -50,14 +50,8 @@ public class Trie {
 
     //AutoTextComplete feature implemeted like in chrome string search
 
-    public void autoTextComplete(String prefix, TrieNode node) {
-        boolean moreBranching = false;
-        for (int i = 0; i < node.R; i++) {
-            if (node.containsKey((char) (i + 'a'))) {
-                moreBranching = true;                 //means node still contains some char going through it
-                break;
-            }
-        }
+    public void autoTextComplete(TrieNode node) {
+
         if (node.isEnd == true) {
             matchingStringCount++;
             for (int i = 0; i < prefixStringCollection.size(); i++) {
@@ -66,13 +60,13 @@ public class Trie {
             System.out.print("\n");
         }
         //Termination condition when node End is true and no moreBranching = false
-        if (node.isEnd & !moreBranching) {
+        if (node.isEnd && !node.hasChildren(node)) {
             return;
         }
         for (int i = 0; i < node.R; i++) {
             if (node.containsKey((char) (i + 'a'))) {
                 prefixStringCollection.add((char) (i + 'a'));
-                autoTextComplete(prefix, node.getLink((char) (i + 'a')));
+                autoTextComplete(node.getLink((char) (i + 'a')));
                 prefixStringCollection.remove(prefixStringCollection.size() - 1);
             }
         }
@@ -81,11 +75,45 @@ public class Trie {
     public void printPrefixStringUtil(String prefix) {
         TrieNode node = searchPrefix(prefix);
         //Append the prefix first that will remain constant
+        prefixStringCollection.clear();
         for (int i = 0; i < prefix.length(); i++) {
             prefixStringCollection.add(prefix.charAt(i));
         }
-        autoTextComplete(prefix, node);
+        autoTextComplete(node);
     }
+
+    public void deleteString(String word) {
+
+        //Case when word does not exist in Trie
+        if (!search(word)) {
+            System.out.print("Word does not exist in Trie");
+            return;
+        }
+        TrieNode node = root;
+        deleteUtil(node, word, 0);
+
+    }
+
+    public boolean deleteUtil(TrieNode node, String word, int level) {
+        if (level == word.length()) {
+            node.isEnd = false;
+            if (node.hasChildren(node))             //means it has branches and it is not the last word
+                return false;
+            else                                    //means it is a last word in its branch, so delete itself
+                return true;
+        }
+        boolean nodeShouldBeDeleteted = deleteUtil(node.getLink(word.charAt(level)), word, level + 1);
+        if (nodeShouldBeDeleteted) {                  // Note : For example you are deleting I in SAHIL.. and there is one
+            node.isEnd = false;                       // one more word SAHIB .. now you get true from L.. now you are at I
+            node.put(word.charAt(level - 1), null); //we will put NULL in position of L ,
+            if (node.hasChildren(node)) {             // you check at I that if it has other branches..or not..
+                return false;                       // In this case it has.. so it returns false..
+            }
+            return true;
+        }
+        return false;
+    }
+
 
     public static void main(String args[]) {
         Trie trie = new Trie();
@@ -102,5 +130,11 @@ public class Trie {
         String prefix = scanner.next();
         trie.printPrefixStringUtil(prefix);
         System.out.println("\n Number of prefixString Match = " + trie.matchingStringCount);
+        String wordtoDelete = scanner.next();
+        System.out.println("\nWord deleted : " + wordtoDelete);
+        trie.deleteString(wordtoDelete);
+        System.out.println("\nFind all Strings that starts with prefix : ");
+        String prefixs = scanner.next();
+        trie.printPrefixStringUtil(prefixs);
     }
 }
