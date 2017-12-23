@@ -24,18 +24,22 @@ public class QuickSort {
         return i + 1;
     }
 
-    public void swap(int a[], int i, int j) {
+    public static void swap(int a[], int i, int j) {
         int temp = a[i];
         a[i] = a[j];
         a[j] = temp;
+    }
+
+    public static void printArray(int arr[]){
+        for(int i=0;i<arr.length;i++){
+            System.out.print((arr[i])+" ");
+        }
     }
 
     public static void main(String args[]) {
      int a[]= {10,80,40,30,90,70};
      QuickSort quickSort=new QuickSort();
      quickSort.qSort(a,0,a.length-1);
-     for(int i=0;i<a.length;i++){
-         System.out.print(a[i]+" ");
-     }
+     quickSort.printArray(a);
     }
 }
