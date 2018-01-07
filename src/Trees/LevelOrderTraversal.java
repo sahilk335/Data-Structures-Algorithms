@@ -37,15 +37,15 @@ public class LevelOrderTraversal {
         if (root == null)
             return;
 
-        if(level>=list.size()){             //Level is not yet created
+        if (level >= list.size()) {             //Level is not yet created
             ArrayList<Integer> levelCreate = new ArrayList();
             //Add first data into the new level created
             levelCreate.add(root.data);
             //Add the level into the list of level
             list.add(levelCreate);
-        }else{                              //Level is already created, not get the level and just add
-           ArrayList<Integer> alreadyCreatedLevel = list.get(level);
-           alreadyCreatedLevel.add(root.data);
+        } else {                              //Level is already created, now get the level and just add
+            ArrayList<Integer> alreadyCreatedLevel = list.get(level);
+            alreadyCreatedLevel.add(root.data);
         }
 
         LevelOrderTraversalRecusion(root.left, level + 1, list);
@@ -57,16 +57,16 @@ public class LevelOrderTraversal {
         ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
         LevelOrderTraversalRecusion(root, 0, list);
 
-        for(int i=0;i<list.size();i++){
-            System.out.print("Level "+i+" = ");
-            for(int j=0 ; j<list.get(i).size();j++){
-                System.out.print(list.get(i).get(j)+ " ");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.print("Level " + i + " = ");
+            for (int j = 0; j < list.get(i).size(); j++) {
+                System.out.print(list.get(i).get(j) + " ");
             }
             System.out.print("\n");
         }
     }
 
-    public void printList(ArrayList list) {
+    public static void printList(ArrayList list) {
         //Print the list
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
