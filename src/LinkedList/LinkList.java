@@ -11,7 +11,7 @@ public class LinkList {
      */
 
     //add node function returns the head of the linked list after adding given node in a linked list
-    public Node addNode(int data, Node head) {
+    public static Node addNode(int data, Node head) {
 
         Node temp = head;
         Node newNode = new Node(data);
@@ -35,7 +35,7 @@ public class LinkList {
     }
 
     //This method returns the head, which is a new node which we are going to add now
-    public Node addAtFront(Node node, Node head) {
+    public static Node addAtFront(Node node, Node head) {
         if (head == null) {
             return node;
         }
@@ -43,14 +43,14 @@ public class LinkList {
         return node;
     }
 
-    public Node addAtFront(int data, Node head) {
+    public static Node addAtFront(int data, Node head) {
         Node newNode = new Node(data);
         //return the head -> call above function
         return addAtFront(newNode, head);
     }
 
     //Function to find node with given data
-    public Node find(int data, Node head) {
+    public static Node find(int data, Node head) {
         while (head != null) {
             if (head.data == data) {
                 return head;
@@ -62,7 +62,7 @@ public class LinkList {
     }
 
     //return Linked list Size
-    public int size(Node head) {
+    public static int size(Node head) {
         int count = 0;
         while (head != null) {
             count++;
@@ -89,7 +89,7 @@ public class LinkList {
      *          3&4.For next iteration, assign prev to curr and curr to next
      */
 
-    public Node reverseIterative(Node head) {
+    public static Node reverseIterative(Node head) {
         Node prev = null;
         Node curr = head;
         Node next = null;
@@ -103,7 +103,7 @@ public class LinkList {
         return prev;
     }
 
-    public Node reverseRecursive(Node head) {
+    public static Node reverseRecursive(Node head) {
         if (head == null || head.next == null) {
             return head;
             //Note this head has to return , and this is answer so we keep on returning this head in all
@@ -117,7 +117,7 @@ public class LinkList {
     }
 
     //Util funciton to print LinkList
-    public void printList(Node head) {
+    public static void printList(Node head) {
         while (head != null) {
             System.out.print(head.data + " ");
             head = head.next;
