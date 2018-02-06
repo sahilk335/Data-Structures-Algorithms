@@ -38,13 +38,13 @@ public class PathSumIII {
     }
 
     //function that calls dfs from a given node.
-    //rootCopy function is used just to store the real root, used to print the node path
+    //rootCopy parameter is used just to store the real root, used to print the node path
     public int findPath(Node root, int sum, Node rootCopy) {
         int res = 0;
         if (root == null)
             return 0;
 
-        //that means add this node data will lead to actual sum
+        //that means adding this node data will lead to actual sum
         //that means this is the destination node , at this node we are getting desired sum
         if (sum == root.data) {
             ArrayList<Node> path = new ArrayList<Node>();
@@ -75,7 +75,7 @@ public class PathSumIII {
 
         //Note: we get true from real path only, so which one of it return true print it
         //it means it gets true either from left or right, we don't care from which one of the direction it gets true
-        //we just know that current node is a path of path , if it also gets true from its bottom(lol!)
+        //we just know that current node is a part of path , if it also gets true from its bottom(lol!)
         if (leftlist || rightlist) {
             path.add(root);
             return true;
