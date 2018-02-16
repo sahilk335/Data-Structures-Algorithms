@@ -29,7 +29,6 @@ public class TopKFrequentWords {
      * If two words has the same frequency, the one with lower alphabetical order come first.
      *
      *
-     *
      * Solution :
      * 1. Create a modified Trie Node that has word frequency with every isEnd = true node
      * 2. Create a modified Heap Array that store word and word frequency
