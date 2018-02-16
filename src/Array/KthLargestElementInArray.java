@@ -8,7 +8,7 @@ public class KthLargestElementInArray {
      * Date : 7 Feb 2018
      *
      * References : https://leetcode.com/problems/kth-largest-element-in-an-array/description/
-     * 
+     *
      * Solution : using Max Heap [submitted to leetcode]
      */
 
