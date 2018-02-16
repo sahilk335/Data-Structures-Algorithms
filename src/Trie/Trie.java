@@ -72,6 +72,37 @@ public class Trie {
         }
     }
 
+    //Display all Strings in a Trie
+
+    public void displayTrieStrings(Trie trie) {
+        ArrayList<String> trieList = new ArrayList<String>();
+        ArrayList<Character> wordList = new ArrayList<Character>();
+        traverseTrie(trie.root, trieList, wordList);
+        for (String string : trieList) {
+            System.out.println(string);
+        }
+    }
+
+    public void traverseTrie(TrieNode node, ArrayList<String> trieList, ArrayList<Character> charArray) {
+        if (node.isEnd) {
+            StringBuilder builder = new StringBuilder(charArray.size());
+            for (Character ch : charArray) {
+                builder.append(ch);
+            }
+            trieList.add(builder.toString());
+        }
+        if (node.isEnd && !node.hasChildren(node)) {
+            return;
+        }
+        for (int i = 0; i < node.R; i++) {
+            if (node.containsKey((char) (i + 'a'))) {
+                charArray.add((char) (i + 'a'));
+                traverseTrie(node.getLink((char) (i + 'a')), trieList, charArray);
+                charArray.remove(charArray.size() - 1);
+            }
+        }
+    }
+
     public void printPrefixStringUtil(String prefix) {
         TrieNode node = searchPrefix(prefix);
         //Append the prefix first that will remain constant
@@ -124,7 +155,7 @@ public class Trie {
         trie.insert("prince");
         trie.insert("samsung");
         trie.insert("sam");
-        System.out.print("Search Available :" + trie.search("sams"));
+        /*System.out.print("Search Available :" + trie.search("sams"));
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nFind all Strings that starts with prefix : ");
         String prefix = scanner.next();
@@ -136,5 +167,6 @@ public class Trie {
         System.out.println("\nFind all Strings that starts with prefix : ");
         String prefixs = scanner.next();
         trie.printPrefixStringUtil(prefixs);
+        trie.displayTrieStrings(trie);*/
     }
 }
