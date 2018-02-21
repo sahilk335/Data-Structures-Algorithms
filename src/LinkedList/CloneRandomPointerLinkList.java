@@ -11,6 +11,8 @@ public class CloneRandomPointerLinkList {
      *
      * Solution :
      *
+     * Check Assets folder for explaintaion
+     *
      * Step 1 -> Iterate the original list and duplicate each node. The duplicate
      * of each node follows its original immediately.
      *
@@ -40,7 +42,7 @@ public class CloneRandomPointerLinkList {
         copyHead=head;
         while(copyHead!=null){
             if(copyHead.random!=null){
-                copyHead.next.random=copyHead.random;  //copyRandom=OriginalRandom
+                copyHead.next.random=copyHead.random;  //copy ka Random=Original ka Random
             }
             //Take 2 steps in each iteration , since it is cloned double list
             copyHead=copyHead.next.next;
