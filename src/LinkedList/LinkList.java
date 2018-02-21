@@ -61,6 +61,10 @@ public class LinkList {
         return null;
     }
 
+    public static void connectRandomPointer(Node n1,Node n2){
+        n1.random=n2;
+    }
+
     //return Linked list Size
     public static int size(Node head) {
         int count = 0;
@@ -121,6 +125,15 @@ public class LinkList {
         while (head != null) {
             System.out.print(head.data + " ");
             head = head.next;
+        }
+    }
+
+    public static void printListRandomPointers(Node head){
+        while(head!=null){
+            if(head.random!=null){
+                System.out.print(head.random.data);
+            }
+            head=head.next;
         }
     }
 
