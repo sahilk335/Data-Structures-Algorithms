@@ -8,9 +8,12 @@ public class Graphs {
     int numberOfVertices;
     //Adjacency list
     ArrayList<Integer> adj[];
+    //Indegree Array
+    int indegreeVertex[];
 
     Graphs(int vertices){
         numberOfVertices=vertices;
+        indegreeVertex=new int[numberOfVertices];
         adj=new ArrayList[numberOfVertices];
         for(int i=0;i<numberOfVertices;i++)
             adj[i]=new ArrayList<Integer>();
@@ -18,6 +21,7 @@ public class Graphs {
 
     void addEdge(int v ,int w){
         adj[v].add(w);
+        indegreeVertex[w]++;
     }
 
     int getNumberOfVertices(){
