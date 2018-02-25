@@ -65,6 +65,10 @@ public class LinkList {
         n1.random=n2;
     }
 
+    public static void connectNode(Node n1,Node n2){
+        n1.next=n2;
+    }
+
     //return Linked list Size
     public static int size(Node head) {
         int count = 0;
