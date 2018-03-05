@@ -1,11 +1,11 @@
 package LinkedList;
 
 public class Node {
-    int data;
+    Integer data;
     Node next;
     Node random;
     Node prev;
-    int key;
+    Integer key;
 
     Node(int data){
         this.data=data;
@@ -13,8 +13,9 @@ public class Node {
         this.random=null;
     }
 
-    Node(int key,int data){
+    Node(Integer key,Integer data){
         this.key=key;
         this.data=data;
     }
+
 }
