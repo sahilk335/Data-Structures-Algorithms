@@ -24,7 +24,7 @@ public class DisjointSets {
      *      Case 6.2 Parents are different if(Parent1 >Parent2) increase rank of Parent 1 and make parent1 ka parent
      *                  equal to Parent 2
      *
-     * 7. NOTE : Only Node that are parent of its are the parent(s) of the SET(s)
+     * 7. NOTE : Only Node that are parent of itself are the parent(s) of the SET(s)
      */
     class Node {
         Integer data;
