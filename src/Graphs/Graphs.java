@@ -1,7 +1,6 @@
 package Graphs;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Graphs {
     //Total number of Vertices
@@ -10,25 +9,56 @@ public class Graphs {
     ArrayList<Integer> adj[];
     //Indegree Array
     int indegreeVertex[];
+    ArrayList<Edges> edgeList;
 
-    Graphs(int vertices){
-        numberOfVertices=vertices;
-        indegreeVertex=new int[numberOfVertices];
-        adj=new ArrayList[numberOfVertices];
-        for(int i=0;i<numberOfVertices;i++)
-            adj[i]=new ArrayList<Integer>();
+    boolean isUndirected;
+
+    Graphs(int vertices) {
+        numberOfVertices = vertices;
+        indegreeVertex = new int[numberOfVertices];
+        adj = new ArrayList[numberOfVertices];
+        edgeList = new ArrayList<Edges>();
+        for (int i = 0; i < numberOfVertices; i++)
+            adj[i] = new ArrayList<Integer>();
+        this.isUndirected = isUndirected;
     }
 
-    void addEdge(int v ,int w){
+    //Constructor for Undirected Graphs
+    Graphs(int vertices, boolean isUndirected) {
+        numberOfVertices = vertices;
+        indegreeVertex = new int[numberOfVertices];
+        adj = new ArrayList[numberOfVertices];
+        edgeList = new ArrayList<Edges>();
+        for (int i = 0; i < numberOfVertices; i++)
+            adj[i] = new ArrayList<Integer>();
+        this.isUndirected = isUndirected;
+    }
+
+    void addEdge(int v, int w) {
         adj[v].add(w);
+        if (isUndirected) {
+            adj[w].add(v);
+        }
+        Edges edges = new Edges(v, w);
+        edgeList.add(edges);
         indegreeVertex[w]++;
     }
 
-    int getNumberOfVertices(){
-        return  numberOfVertices;
+    int getNumberOfVertices() {
+        return numberOfVertices;
     }
 
-    int numberOfAdjacentVertices(int v){
+    int numberOfAdjacentVertices(int v) {
         return adj[v].size();
+    }
+
+    class Edges {
+        int v1;
+        int v2;
+
+        Edges(int v1, int v2) {
+            this.v1 = v1;
+            this.v2 = v2;
+        }
     }
 }
