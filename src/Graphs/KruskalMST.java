@@ -45,8 +45,8 @@ public class KruskalMST {
             disjointSets.makeSet(i);
         }
         for (Edges edges : g.edgeList) {
-            int vertice1Parent = disjointSets.findSet(disjointSets.findSet(edges.v1));
-            int vertice2Parent = disjointSets.findSet(disjointSets.findSet(edges.v2));
+            int vertice1Parent = disjointSets.findSet(edges.v1);
+            int vertice2Parent = disjointSets.findSet(edges.v2);
             if (vertice1Parent == vertice2Parent)    //If cycle found then continue , do not take this edge
                 continue;
             disjointSets.union(edges.v1, edges.v2);
