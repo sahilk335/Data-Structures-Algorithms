@@ -20,6 +20,10 @@ public class KruskalMST {
      * 1. CLRS book
      * 2.https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
      * 3. https://www.youtube.com/watch?v=fAuF0EuZVCk&t=310s
+     *
+     * Solution :
+     * Sort all the edges according to their Weight ,and then keep on adding the lower edge at the same time check, it is not
+     * forming any cycle (on adding edge) using disjoint sets (check for cycles)
      */
 
     int numofVertices;
