@@ -80,7 +80,7 @@ public class BinaryMinHeap<T> {
 
     public void printHeap() {
         for (Node node : nodesHeap) {
-            System.out.print(node.weight);
+            System.out.println(node.key + "->" + node.weight + " ");
         }
     }
 
@@ -118,6 +118,11 @@ public class BinaryMinHeap<T> {
         nodesHeap.get(0).weight = nodesHeap.get(size).weight;
         nodesHeap.get(0).key = nodesHeap.get(size).key;
 
+        //remove its value from node position map
+        nodesPositionMap.remove(minNode.key);
+        nodesPositionMap.remove(nodesHeap.get(size));//remove last node from heap's position because it is gone to 0 now
+        nodesPositionMap.put(nodesHeap.get(0).key, 0);
+        nodesHeap.remove(size);
 
         //Apply heapify down now from root node, as new node is not culprit now !
         int currIdx = 0;
@@ -171,19 +176,30 @@ public class BinaryMinHeap<T> {
         }
     }
 
+    /**
+     * Extract min value key from the heap
+     */
+    public T extractMin() {
+        Node node = extractMinNode();
+        return node.key;
+    }
+
     public static void main(String args[]) {
         BinaryMinHeap binaryMinHeap = new BinaryMinHeap();
 
         binaryMinHeap.add(0, "Khurana");
         binaryMinHeap.add(5, "E");
         binaryMinHeap.add(3, "F");
-        binaryMinHeap.add(2, "G");
+/*        binaryMinHeap.add(2, "G");
         binaryMinHeap.add(1, "H");
         binaryMinHeap.add(9, "A");
         binaryMinHeap.add(8, "B");
         binaryMinHeap.add(7, "C");
-        binaryMinHeap.add(6, "D");
-        binaryMinHeap.decrease(-1, "E");
+        binaryMinHeap.add(6, "D");*/
+        binaryMinHeap.decrease(2, "E");
+
+        //System.out.println(binaryMinHeap.extractMin());
+        System.out.println(binaryMinHeap.getWeight("E"));
         binaryMinHeap.printHeap();
     }
 }

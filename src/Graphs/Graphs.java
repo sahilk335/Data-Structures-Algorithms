@@ -10,6 +10,7 @@ public class Graphs {
     //Indegree Array
     int indegreeVertex[];
     ArrayList<Edges> edgeList;
+    ArrayList<Edges> verticeToEdge[];
 
     boolean isUndirected;
 
@@ -17,9 +18,12 @@ public class Graphs {
         numberOfVertices = vertices;
         indegreeVertex = new int[numberOfVertices];
         adj = new ArrayList[numberOfVertices];
+        verticeToEdge = new ArrayList[numberOfVertices];
         edgeList = new ArrayList<Edges>();
-        for (int i = 0; i < numberOfVertices; i++)
+        for (int i = 0; i < numberOfVertices; i++) {
             adj[i] = new ArrayList<Integer>();
+            verticeToEdge[i] = new ArrayList<Edges>();
+        }
         this.isUndirected = isUndirected;
     }
 
@@ -28,29 +32,39 @@ public class Graphs {
         numberOfVertices = vertices;
         indegreeVertex = new int[numberOfVertices];
         adj = new ArrayList[numberOfVertices];
+        verticeToEdge = new ArrayList[numberOfVertices];
         edgeList = new ArrayList<Edges>();
-        for (int i = 0; i < numberOfVertices; i++)
+
+        for (int i = 0; i < numberOfVertices; i++) {
             adj[i] = new ArrayList<Integer>();
+            verticeToEdge[i] = new ArrayList<Edges>();
+        }
         this.isUndirected = isUndirected;
     }
 
     void addEdge(int v, int w) {
         adj[v].add(w);
-        if (isUndirected) {
-            adj[w].add(v);
-        }
         Edges edges = new Edges(v, w);
         edgeList.add(edges);
+        verticeToEdge[v].add(edges);
+        if (isUndirected) {
+            Edges edgesOpp = new Edges(w, v);
+            adj[w].add(v);
+            verticeToEdge[w].add(edgesOpp);
+        }
         indegreeVertex[w]++;
     }
 
     void addEdge(int v, int w, int weight) {
         adj[v].add(w);
-        if (isUndirected) {
-            adj[w].add(v);
-        }
         Edges edges = new Edges(v, w, weight);
         edgeList.add(edges);
+        verticeToEdge[v].add(edges);
+        if (isUndirected) {
+            Edges edgesOpp = new Edges(w, v, weight);
+            adj[w].add(v);
+            verticeToEdge[w].add(edgesOpp);
+        }
         indegreeVertex[w]++;
     }
 
@@ -61,6 +75,11 @@ public class Graphs {
     int numberOfAdjacentVertices(int v) {
         return adj[v].size();
     }
+
+    int getNumberofEdges() {
+        return edgeList.size();
+    }
+
 
     class Edges {
         int v1;

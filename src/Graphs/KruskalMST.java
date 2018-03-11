@@ -72,7 +72,7 @@ public class KruskalMST {
     }
 
     public static void main(String args[]) {
-        Graphs g = new Graphs(5);
+        Graphs g = new Graphs(5, true);
         g.addEdge(0, 1, 1);
         g.addEdge(0, 2, 3);
         g.addEdge(2, 1, 4);
