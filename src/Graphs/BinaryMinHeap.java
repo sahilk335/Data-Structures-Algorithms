@@ -143,7 +143,7 @@ public class BinaryMinHeap<T> {
             //Check where there is problem in heap because rest will remain as it was already a heap
             if (nodesHeap.get(currIdx).weight > nodesHeap.get(smallerIdx).weight) {
                 swap(nodesHeap.get(currIdx), nodesHeap.get(smallerIdx));
-                updateMapPosition(nodesHeap.get(currIdx).key, nodesHeap.get(currIdx).key,
+                updateMapPosition(nodesHeap.get(currIdx).key, nodesHeap.get(smallerIdx).key,
                         currIdx, smallerIdx);
                 currIdx = smallerIdx;
             } else {  //If at any time get here, stop it, because rest of it is already a heap

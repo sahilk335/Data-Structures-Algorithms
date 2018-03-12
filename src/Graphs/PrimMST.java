@@ -57,21 +57,12 @@ public class PrimMST {
             for (Edges edge : g.verticeToEdge[currVertex]) {
                 Integer adjVertex = edge.v2;
                 //if the adjacentVertex is present in the Heap+Map strucure and its value is lesser then update
-                if (minHeap.containsData(adjVertex)) {
-
-                    int Previous = minHeap.getWeight(adjVertex);
-                    Integer news = edge.weight;
-                    if (Previous > news) {
-                        minHeap.decrease(news, adjVertex);
-                        vertexToEdgeMap.put(adjVertex, edge);
-                    }
+                if (minHeap.containsData(adjVertex) && minHeap.getWeight(adjVertex) > edge.weight) {
+                    minHeap.decrease(edge.weight, adjVertex);
+                    vertexToEdgeMap.put(adjVertex, edge);
                 }
             }
-            if (currVertex == 1) {
-                minHeap.printHeap();
-            }
         }
-
         return result;
     }
 
@@ -86,12 +77,11 @@ public class PrimMST {
         g.addEdge(3, 4, 2);
         PrimMST primMST = new PrimMST();
         List<Edges> minimumSpanningEdge = primMST.primMST(g);
-        System.out.println("\n\n");
         for (Edges edge : minimumSpanningEdge) {
             System.out.println(edge.v1 + "->" + edge.v2);
         }
-     /* for(Edges edge:g.verticeToEdge[1]){
-           System.out.println(edge.weight);
+ /*   for(Edges edge:g.verticeToEdge[1]){
+           System.out.println(edge.v1+"->"+edge.v2+"->"+edge.weight);
        }*/
     }
 }
