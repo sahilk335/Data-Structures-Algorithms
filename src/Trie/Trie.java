@@ -1,7 +1,6 @@
 package Trie;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Trie {
 
@@ -30,7 +29,7 @@ public class Trie {
 
     // search a prefix or whole key in trie and
     // returns the node where search ends
-    private TrieNode searchPrefix(String word) {
+    public TrieNode searchPrefix(String word) {
         TrieNode node = root;
         for (int i = 0; i < word.length(); i++) {
             char currWord = word.charAt(i);
@@ -128,19 +127,13 @@ public class Trie {
     public boolean deleteUtil(TrieNode node, String word, int level) {
         if (level == word.length()) {
             node.isEnd = false;
-            if (node.hasChildren(node))             //means it has branches and it is not the last word
-                return false;
-            else                                    //means it is a last word in its branch, so delete itself
-                return true;
+            return !node.hasChildren(node);
         }
         boolean nodeShouldBeDeleteted = deleteUtil(node.getLink(word.charAt(level)), word, level + 1);
         if (nodeShouldBeDeleteted) {                  // Note : For example you are deleting I in SAHIL.. and there is one
             node.isEnd = false;                       // one more word SAHIB .. now you get true from L.. now you are at I
             node.put(word.charAt(level - 1), null); //we will put NULL in position of L ,
-            if (node.hasChildren(node)) {             // you check at I that if it has other branches..or not..
-                return false;                       // In this case it has.. so it returns false..
-            }
-            return true;
+            return !node.hasChildren(node);
         }
         return false;
     }
