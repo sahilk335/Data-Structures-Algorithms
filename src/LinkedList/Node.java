@@ -5,6 +5,7 @@ public class Node {
     Node next;
     Node random;
     Node prev;
+    Node down;
     Integer key;
 
     Node(int data){
