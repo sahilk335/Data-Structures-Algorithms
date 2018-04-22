@@ -39,17 +39,19 @@ public class SortInGroups {
 
             if (i % k == 0) {
                 firstTime++;
-                temp = head.next;
-                head.next = null;
-                begin = sorted.sortList(begin);
+                temp = head.next;   //Store this next, because in next step we are making it as null
 
-                if (firstTime == 1)
+                //After K nodes, place null [IDEA : consider it as seperate list by placing null at end]
+                head.next = null;
+                begin = sorted.sortList(begin);     //sort this k nodes list
+
+                if (firstTime == 1)         //If it is firstTime ,then after sort. this HEAD is HEAD of final list also
                     dummyHead.next = begin;
                 else {
-                    prevEnd.next = begin;
+                    prevEnd.next = begin;   //Else prevEnd . next is linked to new begin head
                 }
 
-                Node end = endNode(begin);
+                Node end = endNode(begin);      //Reach end of the current list
                 end.next = temp;
                 begin = temp;
                 head = temp;
