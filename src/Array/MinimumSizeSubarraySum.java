@@ -51,9 +51,13 @@ public class MinimumSizeSubarraySum {
                 left++;
             }
         }
+        return (answer != Integer.MAX_VALUE) ? answer : 0;
     }
 
     public static void main(String[] args) {
         MinimumSizeSubarraySum minimumSizeSubarraySum = new MinimumSizeSubarraySum();
+        int[] arr={2,3,1,2,4,3};
+        int target =7;
+        System.out.print(minimumSizeSubarraySum.minSubArrayLen(target,arr));
     }
 }
