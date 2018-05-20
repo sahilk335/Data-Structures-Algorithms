@@ -43,6 +43,20 @@ public class RotationMatrixAnticlockwise {
         }
     }
 
+    //Inplace rotation Matrix
+    void inplaceRotateMatrix(int N, int[][] mat) {
+        for (int x = 0; x < N / 2; x++) {
+            for (int y = x; y < N - x - 1; y++) {
+                int temp = mat[x][y];
+                mat[x][y] = mat[y][N - x - 1];
+                mat[y][N - x - 1] = mat[N - x - 1][N - y - 1];
+                mat[N - x - 1][N - y - 1] = mat[N - y - 1][x];
+                mat[N - y - 1][x] = temp;
+            }
+        }
+        print2DMatrix(mat);
+    }
+
     public void print2DMatrix(int arr[][]) {
         for (int i = 0; i < arr[0].length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
@@ -55,6 +69,7 @@ public class RotationMatrixAnticlockwise {
     public static void main(String args[]) {
         int arr[][] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         RotationMatrixAnticlockwise rma = new RotationMatrixAnticlockwise();
-        rma.transpose(arr);
+        //rma.transpose(arr);
+        rma.inplaceRotateMatrix(3,arr);
     }
 }
