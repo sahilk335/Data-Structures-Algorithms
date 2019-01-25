@@ -1,7 +1,7 @@
 package Array;
 
 /*
- * Source : https://leetcode.com/articles/best-time-buy-and-sell-stock-ii/
+ * Source : https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
  */
 public class BuySellStocks2 {
 
