@@ -53,6 +53,9 @@ public class CountingInversions {
         while (i <= mid) {
             copy[k++] = arr[i++];
         }
+        while (j <= high) {
+            copy[k++] = arr[j++];
+        }
 
         //Don't need to copy second half
 
@@ -78,7 +81,7 @@ public class CountingInversions {
         inversionCounts += mergeSort(arr, copy, low, mid);
 
         //Split/merge right half
-        inversionCounts += mergeSort(arr, copy, low, mid);
+        inversionCounts += mergeSort(arr, copy, mid+1, high);
 
 
         //merge the two half runs
