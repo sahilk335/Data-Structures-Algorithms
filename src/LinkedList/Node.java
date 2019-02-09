@@ -1,12 +1,12 @@
 package LinkedList;
 
 public class Node {
-    Integer data;
-    Node next;
-    Node random;
-    Node prev;
-    Node down;
-    Integer key;
+    public Integer data;
+    public Node next;
+    public Node random;
+    public Node prev;
+    public Node down;
+    public Integer key;
 
     Node(int data){
         this.data=data;

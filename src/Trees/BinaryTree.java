@@ -2,7 +2,7 @@ package Trees;
 
 public class BinaryTree{
 	
-	static Node root;
+	public static Node root;
 	public BinaryTree()
 	{
 		root=null;
