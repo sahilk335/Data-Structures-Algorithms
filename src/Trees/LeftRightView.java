@@ -7,21 +7,25 @@ import static Trees.LevelOrderTraversal.printList;
 public class LeftRightView {
     /*
      *  Two Key points for leftView :
-     *    1. Print first element of each level
-     *    2. Traverse left and then right.
+     *    1. if left view , do level+1 on  left first and then right .
+     *       if right view, do level +1 on right first and then left .
+     *    2. Print first element of each level
+     *    3. Traverse left and then right.
      */
-    public void leftView(Node root, int level, ArrayList<ArrayList<Integer>> list, ArrayList<Integer> leftList) {
+
+    static int minLevel = Integer.MIN_VALUE;
+
+    public void leftView(Node root, int level, ArrayList<Integer> leftList) {
         if (root == null)
             return;
         //Store only the first node data , because it will be the leftmost node
-        if (level >= list.size()) {
-            ArrayList levelCreate = new ArrayList();
-            levelCreate.add(root.data);
-            list.add(levelCreate);
+        if (level > minLevel) {
+            minLevel = level;
             leftList.add(root.data);
         }
-        leftView(root.left, level + 1, list, leftList);
-        leftView(root.right, level + 1, list, leftList);
+
+        leftView(root.left, level + 1, leftList);
+        leftView(root.right, level + 1, leftList);
     }
 
     /*
@@ -29,31 +33,30 @@ public class LeftRightView {
      *    1. Print first element of each level
      *    2. Traverse right and then left.
      */
-    public void rightView(Node root, int level, ArrayList<ArrayList<Integer>> list, ArrayList<Integer> rightList) {
+    public void rightView(Node root, int level, ArrayList<Integer> rightList) {
         if (root == null)
             return;
         //Store only the first node data , because it will be the rightmost node
-        if (level >= list.size()) {
-            ArrayList<Integer> levelCreate = new ArrayList<Integer>();
-            levelCreate.add(root.data);
-            list.add(levelCreate);
+        if (level > minLevel) {
+            minLevel = level;
             rightList.add(root.data);
         }
-        rightView(root.right, level + 1, list, rightList);
-        rightView(root.left, level + 1, list, rightList);
+
+        rightView(root.right, level + 1, rightList);
+        rightView(root.left, level + 1, rightList);
 
     }
 
     public void leftViewUtil(Node root) {
-        ArrayList<ArrayList<Integer>> list1 = new ArrayList<ArrayList<Integer>>();
-        ArrayList<ArrayList<Integer>> list2 = new ArrayList<ArrayList<Integer>>();
+
         ArrayList<Integer> leftList = new ArrayList<Integer>();
         ArrayList<Integer> rightList = new ArrayList<Integer>();
-        leftView(root, 0, list1, leftList);
+        leftView(root, 0, leftList);
         System.out.println("Left View : ");
         printList(leftList);
         System.out.println("\nRight View : ");
-        rightView(root, 0, list2, rightList);
+        minLevel = Integer.MIN_VALUE;
+        rightView(root, 0, rightList);
         printList(rightList);
 
 
