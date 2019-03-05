@@ -21,7 +21,7 @@ public class KthSmallestElementBST {
      *                  and update k=k-N-1
      *
      *          where N -> number of elements in root leftSubtree
-     *          
+     *
      * Approach 2 : Using DFS
      *
      * we start moving in Inorder fashion and stops as soon as counter hits the K.

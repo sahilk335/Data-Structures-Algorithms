@@ -68,7 +68,7 @@ public class GroupAnagrams {
             }
             map.get(key).add(s);
         }
-        return new ArrayList<>(map.values());
+        return null;
     }
 
     public static void main(String args[]) {

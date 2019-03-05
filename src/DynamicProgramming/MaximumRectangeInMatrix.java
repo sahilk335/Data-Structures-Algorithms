@@ -1,6 +1,7 @@
 package DynamicProgramming;
 
-import Array.LargestRectangleAreaHistogram;
+
+import StacksQueues.LargestRectangleAreaHistogram;
 
 public class MaximumRectangeInMatrix {
     /*
