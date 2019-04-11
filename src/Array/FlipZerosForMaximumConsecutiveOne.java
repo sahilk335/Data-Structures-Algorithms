@@ -35,7 +35,9 @@ public class FlipZerosForMaximumConsecutiveOne {
      * https://www.geeksforgeeks.org/find-zeroes-to-be-flipped-so-that-number-of-consecutive-1s-is-maximized/
      *
      * Solution :
-     *
+     * 1. Slide the window WR till you get number of Zeroes in window <= K
+     * 2. While sliding WR number of Zeroes(nZero) increased above K then start shifting WL to right side
+     * 3. Do Steps 1 - 2 till WR reaches length of array
      *
      */
 
