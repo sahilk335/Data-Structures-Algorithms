@@ -18,7 +18,17 @@ public class FirstMissingPositive {
      * Input: [7,8,9,11,12]
      * Output: 1
      *
+     * References :
+     *https://leetcode.com/problems/first-missing-positive/
      *
+     * Solution :
+     * Put each number in its right place.
+     *
+     * For example:
+     *
+     * When we find 5, then swap it with A[4].
+     *
+     * At last, the first place where its number is not right, return the place + 1.
      *
      */
     public int firstMissingPositive(int[] nums) {
