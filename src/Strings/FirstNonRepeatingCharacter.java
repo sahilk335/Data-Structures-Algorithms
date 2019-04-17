@@ -1,5 +1,7 @@
 package Strings;
 
+import java.util.HashMap;
+
 public class FirstNonRepeatingCharacter {
     /*
      *@Author : Sahil
@@ -8,60 +10,41 @@ public class FirstNonRepeatingCharacter {
      *First non-repeating character using one traversal of string
      *
      * Solution :
-     * 1. take 256 character array and initialize it with -1
-     * 2. on first appeareance mark charArr[s.charAt(i)] position with actual index in string
-     * 3. if appearing more than once, mark corresponding position in charArr as -2
-     * 4. Search for minimum positive value in charArray that would be the answer.
+     * 1 .Get the frequency of each character.
+     * 2. Get the first character that has a frequency of one
      *
      * References :
      * https://www.geeksforgeeks.org/first-non-repeating-character-using-one-traversal-of-string-set-2/
+     * https://leetcode.com/problems/first-unique-character-in-a-string/discuss/86348/Java-7-lines-solution-29ms
      */
 
     private static int answer = Integer.MAX_VALUE;
 
-    public static  int firstNonRepeating(String s){
-
-        int[] charArray=new int[256];
-        //Initialize every char with -1
-        for(int i=0;i<256;i++)
-            charArray[i]=-1;
-
-        //if repeated more than twice, let the value be -2, else if appears just once or first time make its value as i
-        for(int i=0;i<s.length();i++) {
-            if (charArray[s.charAt(i)] == -1) {
-                charArray[s.charAt(i)] = i;
-            } else {
-                charArray[s.charAt(i)] = -2;
-            }
+    public int firstNonRepeating(String s) {
+        HashMap<Character, Integer> count = new HashMap<Character, Integer>();
+        int n = s.length();
+        // build hash map : character and how often it appears
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            count.put(c, count.getOrDefault(c, 0) + 1);
         }
 
-        //Now check if there is any character whose index is positive integer,and the minimum positive integer is the
-        //answer as, it would be first to appear
-
-        for(int i=0;i<256;i++) {
-            //checking only those values that are positive as we have now to return first non repeating character
-            if(charArray[i]>=0) {
-                answer=Math.min(answer,charArray[i]);
-            }
+        // find the index
+        for (int i = 0; i < n; i++) {
+            if (count.get(s.charAt(i)) == 1)
+                return i;
         }
-
-
-        return answer;
-
+        return -1;
     }
 
-    public static void main(String [] args){
+
+    public static void main(String[] args) {
         FirstNonRepeatingCharacter firstNonRepeatingCharacter = new FirstNonRepeatingCharacter();
 
         String str = "geeksforgeeks";
 
-        answer= firstNonRepeating(str);
-        if (answer == Integer.MAX_VALUE)
-            System.out.print("Either all characters are " +
-                    "repeating or string is empty");
-        else
-            System.out.print("First non-repeating character"+
-                    " is " + str.charAt(answer));
+            System.out.print("First non-repeating character" +
+                    " is " + firstNonRepeatingCharacter.firstNonRepeating(str));
     }
 
 }
