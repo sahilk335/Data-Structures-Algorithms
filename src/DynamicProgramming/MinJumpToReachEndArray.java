@@ -15,6 +15,11 @@ public class MinJumpToReachEndArray {
      * http://www.geeksforgeeks.org/minimum-number-of-jumps-to-reach-end-of-a-given-array/
      * https://www.youtube.com/watch?v=cETfFsSTGJI
      *
+     *
+     * Solution 2 : Using O(N) approach
+     * 1. Using stairs and ladders approach.
+     * Explaination : - https://www.youtube.com/watch?v=vBdo7wtwlXs
+     *
      */
 
     public int minimumJumps(int steps[]) {
@@ -52,10 +57,37 @@ public class MinJumpToReachEndArray {
         return jumps[steps.length - 1];
     }
 
+    public int minimumJumpsSol2(int steps[]) {
+        if (steps.length <= 1)
+            return 0;
+        if (steps[0] == 0)
+            return 0;
+
+        int ladder = steps[0];
+        int dandia = steps[0];
+        int jump = 1;
+        for (int currEnd = 1; currEnd < steps.length; currEnd++) {
+            if (currEnd == steps.length - 1)
+                return jump;
+
+            ladder = Math.max(ladder, currEnd + steps[currEnd]);
+
+            dandia--;
+
+            if (dandia == 0) {
+                jump++;
+                dandia = ladder - currEnd;
+            }
+        }
+        return jump;
+    }
+
+
     public static void main(String args[]) {
         MinJumpToReachEndArray minjump = new MinJumpToReachEndArray();
         int steps[] = {1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9};
         System.out.print(minjump.minimumJumps(steps));
+        System.out.println("\n\n " + minjump.minimumJumpsSol2(steps));
     }
 
 }
