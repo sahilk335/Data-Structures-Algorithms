@@ -41,45 +41,41 @@ public class SearchInRotatedSortedArray {
      *    NOTE : ALL ELEMENTS MUST BE UNIQUE
      */
 
-    public int search(int[] nums, int target) {
-        return searchInRotatedArray(nums, target, 0, nums.length - 1);
-    }
+    int search(int[] A, int target) {
+        int n=A.length;
+        int lo = 0;
+        int hi = n - 1;
 
-    public int searchInRotatedArray(int[] arr, int key, int low, int high) {
+        //Find inflection point
+        while (lo < hi) {
+            int mid = (lo + hi) / 2;
+            if (A[mid] > A[hi])
+                lo = mid + 1;
+            else
+                hi = mid;
+        }
 
-        if (high >= low) {
+        //Now lo is at inflection point and also the number of places rotated
+        int rot = lo;
+        lo = 0;
+        hi = n - 1;
 
-            int mid = low + (high - low) / 2;
-
-            //Step 1: check if key is the mid element
-            if (key == arr[mid]) {
-                return mid;
-            }
-
-            //Step 2 : check if left half is sorted.. if it is then right is obviously not sorted
-            if (arr[low] <= arr[mid]) {
-                //check if key lies inside the left array
-                if (key <= arr[mid] && key >= arr[low]) {
-                    return searchInRotatedArray(arr, key, low, mid - 1);
-                } else {
-                    return searchInRotatedArray(arr, key, mid + 1, high);
-                }
-            } else {
-                //Step 3: if step 2 is false then , right half is sorted
-                if (key >= arr[mid] && key <= arr[high]) {
-                    return searchInRotatedArray(arr, key, mid + 1, high);
-                } else {
-                    return searchInRotatedArray(arr, key, low, mid - 1);
-                }
-            }
+        //usual binary search
+        while (lo <= hi) {
+            int mid = (lo + hi) / 2;
+            int realmid = (mid + rot) % n;
+            if (A[realmid] == target) return realmid;
+            if (A[realmid] < target) lo = mid + 1;
+            else hi = mid - 1;
         }
         return -1;
     }
 
-    public static void main(String args[]) {
+
+    public static void main(String[] args) {
         SearchInRotatedSortedArray search = new SearchInRotatedSortedArray();
-        int arr[] = {5, 6, 7, 8, 9, 10, 1, 2, 3};
-        System.out.print(search.search(arr, 9));
+        int[] arr = {5, 6, 7, 8, 9, 10, 1, 2, 3};
+        System.out.print(search.search(arr, 1));
     }
 
 
