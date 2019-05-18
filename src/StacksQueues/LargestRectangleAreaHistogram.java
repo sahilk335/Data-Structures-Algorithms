@@ -83,32 +83,29 @@ public class LargestRectangleAreaHistogram {
     }
 
     //Solution 2
-    public int largestRectangleAreaStack(int[] height) {
-        if (height == null || height.length == 0) {
-            return 0;
-        }
-        int solution = 0;
-        Stack<Integer> stack = new Stack<Integer>();
-        //Adding left boundary
-        stack.push(-1);
-        for (int right = 0; right < height.length; right++) {
-            //while stack is not empty
-            while (stack.peek() > -1) {
-                if (height[stack.peek()] > height[right]) {
-                    int top = stack.pop();
-                    solution = Math.max(solution, height[top] * (right - stack.peek() - 1));
-                } else break;
+    public int largestRectangleAreaStack(int[] h) {
+        int n = h.length, i = 0, max = 0;
+
+        Stack<Integer> s = new Stack<>();
+
+        while (i < n) {
+            // as long as the current bar is shorter than the last one in the stack
+            // we keep popping out the stack and calculate the area based on
+            // the popped bar
+            while (!s.isEmpty() && h[i] < h[s.peek()]) {
+                // tricky part is how to handle the index of the left bound
+                max = Math.max(max, h[s.pop()] * (i - (s.isEmpty() ? 0 : s.peek() + 1)));
             }
-            stack.push(right);
+            // put current bar's index to the stack
+            s.push(i++);
         }
 
-        //For left over items in stack, now calculate the area
-        while (stack.peek() != -1) {
-            int top = stack.pop();
-            solution = Math.max(solution, height[top] * (height.length - 1 - stack.peek()));
+        // finally pop out any bar left in the stack and calculate the area based on it
+        while (!s.isEmpty()) {
+            max = Math.max(max, h[s.pop()] * (n - (s.isEmpty() ? 0 : s.peek() + 1)));
         }
 
-        return solution;
+        return max;
     }
 
     public static void main(String args[]) {
