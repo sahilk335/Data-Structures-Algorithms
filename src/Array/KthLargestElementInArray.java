@@ -12,44 +12,18 @@ public class KthLargestElementInArray {
      * Solution : using Max Heap [submitted to leetcode]
      */
 
-    public int buildHeapAndFind(int arr[], int k) {
-        int n = arr.length;
-        for (int i = n / 2 - 1; i >= 0; i--) {
-            heapify(arr, n, i);
-        }
-        return kthLargestElement(arr, k);
-    }
+   public int findKthLargest(int[] nums, int k) {
 
-    public void heapify(int arr[], int size, int i) {
-        int left = 2 * i + 1;
-        int right = 2 * i + 2;
-        int largest = i;
-        if (left < size && arr[left] > arr[largest]) {
-            largest = left;
-        }
-        if (right < size && arr[right] > arr[largest]) {
-            largest = right;
-        }
-        if (largest != i) {
-            swap(arr, i, largest);
-            heapify(arr, size, largest);
-        }
-    }
+    final PriorityQueue<Integer> pq = new PriorityQueue<>();
+    for(int val : nums) {
+        pq.offer(val);
 
-    public int kthLargestElement(int arr[], int k) {
-        int kthElement = 0;
-        int n = arr.length;
-        int count = 0;
-        for (int i = n - 1; i >= 0; i--) {
-            if (count == k)
-                break;
-            kthElement = arr[0];
-            swap(arr, i, 0);
-            heapify(arr, i, 0);
-            count++;
+        if(pq.size() > k) {
+            pq.poll();
         }
-        return kthElement;
     }
+    return pq.peek();
+}
 
 
     public static void main(String args[]) {
@@ -57,6 +31,6 @@ public class KthLargestElementInArray {
         int arr[] = {8, 7, 6, 4, 3, 1, 2, 9, 5};
         int k = 2;
         KthLargestElementInArray element = new KthLargestElementInArray();
-        System.out.print(element.buildHeapAndFind(arr, k));
+        System.out.print(element.findKthLargest(arr, k));
     }
 }
