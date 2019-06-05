@@ -72,7 +72,7 @@ public class JminusIMaximum {
             }
         }
 
-          /*  System.out.print("\n");
+           System.out.print("\n");
             for ( i = 0; i < len; i++) {
                 System.out.print(leftCriticalArr[i] + " ");
             }
@@ -80,14 +80,14 @@ public class JminusIMaximum {
             System.out.print("\n");
             for ( i = 0; i < len; i++) {
                 System.out.print(righCriticalArr[i] + " ");
-            }*/
+            }
 
         return answer;
     }
 
     public static void main(String args[]) {
         JminusIMaximum jmi = new JminusIMaximum();
-        int arr[] = {6, 5, 4, 3, 2, 1};
+        int arr[] = {34, 8, 10, 3, 2, 80, 30, 33, 1};
         System.out.print("\n" + "Answer : " + jmi.maxJminusI(arr));
     }
 }

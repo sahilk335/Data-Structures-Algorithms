@@ -63,7 +63,7 @@ public class BSTLowestCommonAncestor {
         BinarySearchTree.root.right.left = new Node(21);
         BinarySearchTree.root.right.right = new Node(24);
 
-        System.out.println("LCA for 10,14 : "+lcaBST.lcaBST( BinarySearchTree.root,10,14).data);
+        System.out.println("LCA for 10,14 : "+lcaBST.lcaBST( BinarySearchTree.root,14,12).data);
 
     }
 }

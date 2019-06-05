@@ -71,8 +71,4 @@ public class TopKFrequentWords {
         return top_k;
     }
 
-    public static void main(String[] args) {
-        TopKFrequentWords topKFrequentWords = new TopKFrequentWords();
-
-    }
 }

@@ -7,6 +7,8 @@ public class Node {
     public Node prev;
     public Node down;
     public Integer key;
+    public Node before;
+    public Node after;
 
     Node(int data){
         this.data=data;
