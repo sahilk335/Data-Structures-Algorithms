@@ -1,10 +1,18 @@
 package Trees;
 
-import javax.swing.tree.TreeNode;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
+
+/*
+ * @Author : Sahil Khurana
+ * Date : 06 June 2019
+ *
+ * Given an n-ary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+ *
+ * Solution 1 : Iterative
+ * Solution 2 : Recursive
+ */
 
 public class LevelOrderTraversal {
 
