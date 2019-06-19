@@ -7,6 +7,7 @@ public class Node {
     Node left;
     Node right;
     Node next;
+    Node parent;
     int height;
     public List<Node> children;
 
