@@ -36,15 +36,47 @@ public class CourseSchedule {
      * You may assume that there are no duplicate edges in the input prerequisites.
      *
      *
+     * Reference :
+     * https://leetcode.com/problems/course-schedule/
+     *
      * Solution :
-     * 1. Apply
+     * 1. Topological sort (indegree concept)
      *
      */
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
+        int[] indegree = new int[numCourses];
+        int[][] matrix = new int[numCourses][numCourses];   //i->j
 
+        for (int i = 0; i < prerequisites.length; i++) {
+            int pre = prerequisites[i][1];
+            int curr = prerequisites[i][0];
+            if (matrix[pre][curr] == 0)
+                indegree[curr]++;
+            matrix[pre][curr] = 1;
+        }
 
-        return true && true;
+        int count = 0;
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < indegree.length; i++) {
+            if (indegree[i] == 0) {
+                queue.add(i);
+            }
+        }
+
+        while (!queue.isEmpty()) {
+            int removedCourse = queue.poll();
+            count++;
+            for (int i = 0; i < numCourses; i++) {
+                if (matrix[removedCourse][i] != 0) {
+                    if (--indegree[i] == 0) {
+                        queue.add(i);
+                    }
+                }
+            }
+        }
+
+        return count == numCourses;   //else there is a cycle
     }
 
     public static void main(String[] args) {
