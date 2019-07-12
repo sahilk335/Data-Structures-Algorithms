@@ -28,49 +28,26 @@ public class MinStack {
      *
      */
 
-    Stack<Integer> stack;
-    int min;
-
-    public MinStack() {
-        stack = new Stack<>();
-    }
-
+    int min = Integer.MAX_VALUE;
+    Stack<Integer> stack = new Stack<Integer>();
     public void push(int x) {
-
-        if (stack.isEmpty()) {
-            //Initial no element , so we make first element as min, and push 0 in stack
-            stack.push(0);
-            min = x;
-        } else {
-            stack.push(x - min);//Store the difference between min and currElement
-            if (min > x) {
-                //update min if currELement is smaller than min
-                min = x;
-                //Note if this is the case we have already pushed negative number in a stack
-                //This indicated at every negative  value in a stack , we have updated a min value
-            }
+        // only push the old minimum value when the current
+        // minimum value changes after pushing the new value x
+        if(x <= min){
+            stack.push(min);
+            min=x;
         }
+        stack.push(x);
     }
 
     public void pop() {
-        if (stack.isEmpty())
-            return;
-
-        int pop = stack.pop();
-
-        if (pop < 0) {      //negative element indicates a updated min
-            min = min - pop;
-        }
+        // if pop operation could result in the changing of the current minimum value,
+        // pop twice and change the current minimum value to the last minimum value.
+        if(stack.pop() == min) min=stack.pop();
     }
 
     public int top() {
-        int peek = stack.peek();
-
-        if (peek < 0) {     //If it is negative then that means min is the value
-            return min;
-        } else {
-            return min + peek;  //else return top + difference
-        }
+        return stack.peek();
     }
 
     public int getMin() {
