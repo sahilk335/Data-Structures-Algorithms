@@ -82,14 +82,18 @@ public class ImageOverlap {
     public static void main(String[] args) {
 
         int img1[][] = {
-                {1, 1, 0},
-                {0, 1, 0},
-                {0, 1, 0}
+                {0,0,0,0,1},
+                {0,0,0,0,0},
+                {0,0,0,0,0},
+                {0,0,0,0,0},
+                {0,0,0,0,0}
         };
         int img2[][] = {
-                {0, 0, 0},
-                {0, 1, 1},
-                {0, 0, 1}
+                {0,0,0,0,0},
+                {0,0,0,0,0},
+                {0,0,0,0,0},
+                {0,0,0,0,0},
+                {0,0,0,0,1}
         };
         ImageOverlap imageOverlap = new ImageOverlap();
         System.out.println(imageOverlap.largestOverlap(img1, img2));
