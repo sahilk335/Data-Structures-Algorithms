@@ -38,7 +38,7 @@ public class MaxConsecutiveOnesIII {
     }
 
     public static void main(String[] args) {
-        Test test = new Test();
+        MaxConsecutiveOnesIII test = new MaxConsecutiveOnesIII();
         int arr[] = {1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0};
         int k = 2;
         System.out.println(test.longestOnes(arr, k));
